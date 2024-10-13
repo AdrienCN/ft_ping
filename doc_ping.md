@@ -1,6 +1,6 @@
 /*
 Fonctions & MAN :
-# getprotobyname (3) list protocols MACRO
+# getprotobyname (3)
 # raw (7)  sock raw info
 # socket () socket info
 # setsockopt(2)
