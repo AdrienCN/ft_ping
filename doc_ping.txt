@@ -1,0 +1,100 @@
+/*
+Fonctions & MAN :
+# getprotobyname (3) list protocols MACRO
+# raw (7)  sock raw info
+# socket () socket info
+# setsockopt(2)
+# getsockopt
+# sendto (2)
+# recvfrom(2)
+# ip (7)
+# capabilities(7)
+
+==========================================
+Infos & Details 
+==========================================
+
+
+ICMP Protocol: (OSI Layer 3 : Network )
+- ICMP protocol allows devices to exchange messages.
+- Does not use PORT. 
+    Direct HOST to HOST exchange
+    No data
+    Just info MSG
+
+- 3 msgs : errors, queries, and responses.
+        - Error : inform sender about pbm preventing the sender's packets from reaching their destination.
+        - Query and response : used to exchange information about network.
+                               Query and response messages are always used in pairs 
+                               where one device sends a query message and another sends
+                               a reply or response to the query message.
+                               The ping command uses query-response messages.
+https://www.computernetworkingnotes.com/networking-tutorials/icmp-internet-control-message-protocol.html
+
+
+SOCKET :
+    Permet d'ouvrir un canal de communication pour que des devices echange des infos sur le reseau.
+    La socket necessite : IP + PORT + PROTOCOLE de communication
+    PING = RAW socket
+
+    --> SOCK_STREAM : Stream socket provides a reliable, bidirectional
+                        and connection-oriented communication channel between two processes.
+                        Data are carried using the Transmission Control Protocol (TCP)
+
+    --> SOCK_DGRAM  : Datagram socket does not guarantee reliability and is connectionless.
+                        As a result, the transmission is faster. 
+                        Data are carried using the User Datagram Protocol (UDP)
+
+    --> SOCK_RAW ( man 7 raw )   : Create an Internet Protocol (IP) datagram socket. 
+                        A Raw socket skips the TCP/UDP transport layer and 
+                            sends the packets directly to the network layer
+    ! In order to create a raw socket, a process must have the CAP_NET_RAW capability 
+        in the user namespace that governs its network namespace.
+
+    
+
+
+
+
+
+*/
+
+
+/* Use ICMP protocol to send ECHO_REQUEST to DESTare used to
+ - DEST :
+    IPV4 or Domain name
+
+ - ECHO_REQUEST :
+    IP and ICMP header + “struct timeval" + arbitrary number of "pad" bytes used to fill out the packet.
+
+==========================================
+STEPS 
+==========================================
+
+    PARSING :
+
+    ALGO :
+        - Build ECHO_REQUEST
+        - Open ICMP socket (AF_INT, SOCK_RAW, IPPROTO_RAW ? IPPROTO_ICMP ?) ICMP_FILTER ?
+        - Send ECHO_REQUES T
+        - Listen for ECHO_REPLY
+        - Output 
+
+    PRINT OUTPUT :
+
+    ERROR HANDLING :
+
+==========================================
+ Question / To do : 
+==========================================
+ - How to resolve DNS name ?
+ - What composes an ECHO_REQUEST datagram ?
+ - List des signaux a catcher ?
+ - Comment catcher les signaux ?
+ - Qu'est ce que sont les linux cap ?
+ - Comment donner les cap au user qui lance ping ?
+ - IPPROTO_ICMP ou  IPPROTO_IP ou IPPROTO_RAW ?
+ - Utiliser l'option ICMP_FILTER ?
+ x How to send packet using the ICMP protocol ? 
+    --> open RAW socket
+*/
