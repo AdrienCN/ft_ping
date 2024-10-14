@@ -1,4 +1,4 @@
-SRCS = srcs/ft_ping
+SRCS = srcs/ft_ping.c
 
 OBJ = $(SRCS:.c=.o)
 
@@ -8,14 +8,12 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
-INCLUDE = -I 
-
 
 .c.o:
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(LIBS_PATH) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 all: $(NAME)
 
@@ -24,6 +22,5 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf ./minishell.log
 
 re: fclean all
