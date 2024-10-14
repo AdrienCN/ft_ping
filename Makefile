@@ -1,4 +1,6 @@
-SRCS = srcs/ft_ping.c
+SRCS = 						\
+	srcs/ft_ping.c 			\
+	srcs/ft_ping_parsing.c
 
 OBJ = $(SRCS:.c=.o)
 
@@ -6,7 +8,11 @@ NAME = myping
 
 CC = gcc 
 
-CFLAGS = -Wall -Werror -Wextra
+#DEBUG
+CFLAGS = -Wall -Werror -Wextra -std=c99 -g
+
+#CFLAGS = -Wall -Werror -Wextra -std=c99 -g
+
 
 
 .c.o:
@@ -16,6 +22,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 all: $(NAME)
+
 
 clean:
 	rm -rf $(OBJ)
