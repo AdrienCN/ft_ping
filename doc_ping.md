@@ -100,7 +100,7 @@ STEPS
         All good 
 
 ==========================================
- Question / To do : 
+ Question : 
 ==========================================
  - How to resolve DNS name ?
  - What composes an ECHO_REQUEST datagram ?
@@ -132,4 +132,72 @@ STEPS
 
  x How to send packet using the ICMP protocol ? 
     --> open RAW socket
+
+
+
+
+    TO DO
+# REFRACTORING / CODING
+
+- Documentation des protode fonctions
+
+# Parsing
+- List all possible parsing or CLI errors
+- Implement all parsing error
+    - IP PARSING
+        - parsing false leading 0 . ie : 08.8.8.8 or 8.8.08.8
+- use  getopt ?
+
+# SIGNAL HANDLING 
+    - use volatile var to store exitsignal and status snapshot  ?
+    - Implementer  SIGINT  (Ctrl+C) --> sigexit
+    - Implementer SIGQUIT  (Ctrl+\) --> sigstatus 
+        - Ne pas quitter le prog en en repetant SIGQUIT+++
+    - Implementer SIGALRM           --> sigexit
+        - Comment declencher sigalarm ?
+        - Trouver le comportement.
+
+# ALGO 
+
+    SOCKET_RAW :
+
+    ICMP_ECHO_REQUEST:
+        -
+
+
+
+
+
+    STATS :
+        -RTT (round trip time) min/avg/max/mdev (include duplicate pkt see man )
+            -min
+            -avg
+            -max
+            -mdev : avg of how far each ping RTT is from mean RTT
+        -Packet loss (DO NOT calculate duplicate pkt)
+    
+    PRINT :
+        -ON START :
+            "PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data."
+        - RUNNING :
+            "64 bytes from 8.8.8.8: icmp_seq=2 ttl=114 time=7.82 ms"
+
+        - SIGQUIT:
+            "1/1 packets, 0% loss, min/avg/ewma/max = 7.629/7.629/7.629/7.629 ms"
+
+        - EXIT :
+            "--- 8.8.8.8 ping statistics ---
+            packets transmitted, 7 received, 0% packet loss, time 6007ms
+            rtt min/avg/max/mdev = 7.629/15.844/63.836/19.592 ms
+            "
+
+# ERROR HANDLING
+- associate struct ou fonction ERR_CODE - ERR_STRING
+- DUPLICATE pkts
+- BROKEN PKTS
+
+
+# END CHECKS
+- Virer les (void)
+- Remove DEBUG OPTION in makefile
 */

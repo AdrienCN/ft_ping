@@ -2,39 +2,6 @@
 
 #include "ping.h"
 
-/* 
-TO DO
-# REFRACTORING / CODING
-
-- Documentation des protode fonctions
-
-# Parsing
-- List all possible parsing or CLI errors
-- Implement all parsing error
-    - IP PARSING
-        - parsing false leading 0 . ie : 08.8.8.8 or 8.8.08.8
-
-#SIGNAL HANDLING 
-    - use volatile var to store exitsignal and status snapshot  ?
-    - Implementer  SIGINT  (Ctrl+C) --> sigexit
-    - Implementer SIGQUIT  (Ctrl+\) --> sigstatus 
-        - Ne pas quitter le prog en en repetant SIGQUIT+++
-    - Implementer SIGALRM           --> sigexit
-        - Comment declencher sigalarm ?
-        - Trouver le comportement.
-
-
-#ERROR HANDLING
-- associate struct ou fonction ERR_CODE - ERR_STRING
-
-
-# END CHECKS
-- Virer les (void)
-- Remove DEBUG OPTION in makefile
-
-*/
-
-
 
 void ft_print_error(const int error_code)
 {   
