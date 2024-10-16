@@ -7,7 +7,15 @@
 #include <ctype.h>
 #include <signal.h>
 
+#include <errno.h>
+
+#include  <sys/socket.h>
+#include  <netinet/in.h>
+
 #define DEFAULT_INTERVAL 1 // seconds between sending each packet.
+
+#define SUCCESS 0
+#define ERROR   -1
 
 #define EXIT_SUCCESS            0
 #define EXIT_ERR_PKT_OR_DELAY   1
