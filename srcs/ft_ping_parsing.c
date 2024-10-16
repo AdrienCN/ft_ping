@@ -1,4 +1,4 @@
-#include "ping_struct.h"
+#include "ping.h"
 
 int ft_is_ip(const char *argv, t_ping_opt *ping_opt)
 {

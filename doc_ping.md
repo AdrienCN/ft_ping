@@ -54,13 +54,20 @@ SOCKET :
     
 
 
+SIGNAUX :
+   SIGINT
+    Interrompre le programme et print les infos 
+    
+    SIGQUIT
+        Ne pas interrompre et print les current infos
+    
+    SIGALRM 
+        ????
 
 
 
-*/
 
-
-/* Use ICMP protocol to send ECHO_REQUEST to DESTare used to
+Use ICMP protocol to send ECHO_REQUEST to DESTare used to
  - DEST :
     IPV4 or Domain name
 
@@ -83,18 +90,46 @@ STEPS
     PRINT OUTPUT :
 
     ERROR HANDLING :
+    ERROR 01 :
+        If ping does not receive any reply packets at all it will exit with code 1. If a packet count and deadline are both specified, and fewer than count packets are received by the time the deadline has arrived, it
+       will also exit with code 1.
+    ERROR 02 :
+        On other error it exits with code 2. Otherwise it exits with code 0. 
+    
+    ERROR00:
+        All good 
 
 ==========================================
  Question / To do : 
 ==========================================
  - How to resolve DNS name ?
  - What composes an ECHO_REQUEST datagram ?
- - List des signaux a catcher ?
- - Comment catcher les signaux ?
+ - RTT ?
+ - Default number of packer if not specified ?
+ - behaviour if no answer ?
+    - Do we quit ?
+    - How long to wait ?
+    - Do we print something ?
+
  - Qu'est ce que sont les linux cap ?
  - Comment donner les cap au user qui lance ping ?
  - IPPROTO_ICMP ou  IPPROTO_IP ou IPPROTO_RAW ?
  - Utiliser l'option ICMP_FILTER ?
+
+ x Comment catcher les signaux ?
+    --> Pas besoin de faire quoique ce soit.
+        Le programme s'occupe de catcher le signal tout seul. 
+        Il faut par contre utiliser la fonction sigaction() pour parametrer le comportement a adopter en cas de catch du signal.
+        Autrement le programme utilise le comportement par default. ( parametre dans le kernel?)
+        ! deconseiller d'utiliser signal qui est deprecated car son comportement n'est pas uniforme entre les implementations.
+
+  x Liste des signaux a catcher ?
+    Selon le code source de ping on laisse le comportement par default
+    Sauf sur ces 3 signaux
+    SIGINT
+    SIGALARM
+    SIGQUIT
+
  x How to send packet using the ICMP protocol ? 
     --> open RAW socket
 */

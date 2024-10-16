@@ -1,6 +1,7 @@
 SRCS = 						\
 	srcs/ft_ping.c 			\
-	srcs/ft_ping_parsing.c
+	srcs/ft_ping_parsing.c	\
+	srcs/ft_signal.c
 
 OBJ = $(SRCS:.c=.o)
 
